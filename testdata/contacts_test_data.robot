@@ -4,8 +4,8 @@ Resource    login_test_data.robot
 *** Variables ***
 ${CONTACT_FIRST}    TestFirstName
 ${CONTACT_LAST}     TestLastName
-${CONTACT_ORGANIZATION}   Atestorganization
-${CONTACT_ORGANIZATION_ID}   167
+${CONTACT_ORGANIZATION}   PanelTestOrganization
+${CONTACT_ORGANIZATION_ID}   102
 ${CONTACT_EMAIL}    testfirstlastname@example.com
 ${CONTACT_PHONE}    06578357878
 ${CONTACT_ADDRESS}   562 Main

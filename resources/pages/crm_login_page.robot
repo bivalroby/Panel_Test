@@ -1,6 +1,7 @@
 *** Settings ***
 Library     SeleniumLibrary
 Library     OperatingSystem
+
 Resource    ${CURDIR}${/}../../resources/pages/popup_handler.robot
 Resource    ${CURDIR}${/}../../resources/pages/ui_element_interaction.robot
 Resource    ${CURDIR}${/}../../config/testenvironment.robot
@@ -11,7 +12,7 @@ ${passwordbox}      css=input[type='password']
 
 *** Keywords ***
 Open Login Page
-    Open Browser    ${base_url}/login   chrome
+    Open Browser     ${base_url}/login    edge
     Maximize Browser Window
 
 Enter Username
@@ -29,7 +30,7 @@ Login With Credentials
     Enter Password    ${password}
     Press Keys      ${None}     ENTER
     Sleep   10 sec
-    Check and Accept Alert Popup
+    Check and Reject Alert Popup
     Page Should Contain    Dashboard
 
 Auto Accept Chrome Push Notifications

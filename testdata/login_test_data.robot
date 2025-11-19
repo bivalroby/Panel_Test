@@ -1,5 +1,5 @@
 *** Variables ***
 ${username}    johndoe@example.com
-${password}     Quick143!
+${password}     secret
 ${invalidusername}    test123@gmail.com
 ${invalidpassword}     test123

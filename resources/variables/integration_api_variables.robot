@@ -7,10 +7,10 @@ ${RETRIES}     2
 ${RETRY_DELAY}  2s
 
 # Define APIs with method, endpoint, expected status, JSON Field to be validated, JSON Value to be validated and optional payload
-&{API_CD_TC_001}    method=GET    endpoint=/organization/contacts?search=Atestorganization    status=200    json_field=id    json_value=1312    is_list=True
+&{API_CD_TC_001}    method=GET    endpoint=/organization/contacts?search=PanelTestOrganization    status=200    json_field=id    json_value=1312    is_list=True
 &{API_CD_TC_002}    method=GET    endpoint=/account/1    status=200    json_field=id    json_value=1    is_list=False
-&{API_CD_TC_003}    method=GET    endpoint=/contact/1051    status=200    json_field=id    json_value=1051    is_list=False
-&{API_CD_TC_004}    method=GET    endpoint=/organization/167    status=200    json_field=id    json_value=167    is_list=False
+&{API_CD_TC_003}    method=GET    endpoint=/contact/57    status=200    json_field=id    json_value=1051    is_list=False
+&{API_CD_TC_004}    method=GET    endpoint=/organization/102    status=200    json_field=id    json_value=167    is_list=False
 &{API_CD_TC_005}    method=GET    endpoint=/organizations    status=200    json_field=None    json_value=None    is_list=True
 &{API_CD_TC_006}    method=GET    endpoint=/user/1    status=200    json_field=id    json_value=1    is_list=False
 &{API_CD_TC_007}    method=GET    endpoint=/users    status=200    json_field=None    json_value=None    is_list=True

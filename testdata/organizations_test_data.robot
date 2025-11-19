@@ -2,7 +2,7 @@
 Resource    login_test_data.robot
 
 *** Variables ***
-${ORGANIZATION_NAME}    Atestorganization
-${ORGANIZATION_ID}     167
-${PARTIAL_ORG_NAME}     torga
+${ORGANIZATION_NAME}    PanelTestOrganization
+${ORGANIZATION_ID}     102
+${PARTIAL_ORG_NAME}     lTest
 

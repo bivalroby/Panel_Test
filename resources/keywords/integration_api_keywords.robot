@@ -57,11 +57,9 @@ Send Rest Request
     ...    ELSE IF    "DELETE" == $request_method     DELETE    @{args}    &{kw_args}
     ...    ELSE IF    "PUT" == $request_method     PUT    @{args}    &{kw_args}
     ...    ELSE    Fail    msg=Provide a valid request method
-    Log To Console      actualresponsecode:${response.status_code}
     Should Be Equal As Integers    ${response.status_code}    ${kw_args['expected_status']}
     Run Keyword And Ignore Error    Log     ${response.json()}
-    Log To Console      Expectedresponse:${kw_args['expected_status']}
-    [Return]    ${response}
+    RETURN    ${response}
 
 Send Rest Request With Retry
     [Documentation]    This keyword performs a GET/POST/PUT/DELETE request and return response json and response
