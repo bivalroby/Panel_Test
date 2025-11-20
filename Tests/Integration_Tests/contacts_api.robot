@@ -7,23 +7,31 @@ Resource          ${CURDIR}${/}../../resources/variables/integration_api_variabl
 *** Test Cases ***
 Run Contacts API Integration Tests
     [Tags]      Integration Tests
+    ${fail_status}   Set Variable    ${False}
     FOR    ${api}    IN    @{API_LIST}
-        ${method}      Set Variable    ${api['method']}
-        ${endpoint}    Set Variable    ${api['endpoint']}
-        ${status}      Set Variable    ${api['status']}
-        ${field}       Set Variable    ${api['json_field']}
-        ${value}       Set Variable    ${api['json_value']}
-        ${is_list}     Set Variable    ${api['is_list']}
-        ${complete_endpoint}    Set Variable    ${api_url}${endpoint}
-        &{request_headers}    Create Dictionary  Content=${HEADERS}
-        ...     Accept=${HEADERS}
-        ${response}    Send Rest Request    ${method}    url=${complete_endpoint}
-        ...     expected_status=${status}   headers=&{request_headers}
-        Validate Response Status    ${response}    ${status}    ${endpoint}
-        IF  ${field}!=None
-            Validate JSON Response    ${response.json()}    ${field}    ${value}    ${is_list}    ${endpoint}
+        TRY
+            ${method}      Set Variable    ${api['method']}
+            ${endpoint}    Set Variable    ${api['endpoint']}
+            ${status}      Set Variable    ${api['status']}
+            ${field}       Set Variable    ${api['json_field']}
+            ${value}       Set Variable    ${api['json_value']}
+            ${is_list}     Set Variable    ${api['is_list']}
+            ${complete_endpoint}    Set Variable    ${api_url}${endpoint}
+            &{request_headers}    Create Dictionary  Content=${HEADERS}
+            ...     Accept=${HEADERS}
+            Log To Console      \nSending ${api} request
+            ${response}    Send Rest Request    ${method}    url=${complete_endpoint}
+            ...     expected_status=${status}   headers=&{request_headers}
+            Validate Response Status    ${response}    ${status}    ${endpoint}
+            IF  ${field}!=None
+                Validate JSON Response    ${response.json()}    ${field}    ${value}    ${is_list}    ${endpoint}
+            END
+        EXCEPT
+            Log To Console      \nError while sending ${api} request
+            ${fail_status}   Set Variable    ${True}
         END
     END
+    Run Keyword If    ${fail_status}==True    Fail    One or more API requests failed
 
 Run Contacts API Integration Tests With Retry
     FOR    ${api}    IN    @{API_LIST}
